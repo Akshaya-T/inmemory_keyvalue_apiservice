@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiserver-deployment
+  labels:
+    app: apiserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apiserver
+  template:
+    metadata:
+      labels:
+        app: apiserver
+    spec:
+      containers:
+        - name: apiserver
+          image: apiserver
+          ports:
+            - containerPort: 8000
+    strategy:
+      rollingUpdate:
+        maxSurge: 50%
+        maxUnavailable: 0%
+      type: RollingUpdate
