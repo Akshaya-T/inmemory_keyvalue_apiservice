@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/group.name: public-ingress
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+  name: public-ingress
+spec:
+  rules:
+    - host: apiserver.test.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: apiserver-svc
+                port:
+                  number: 80
+            path: /*
+            pathType: Prefix
