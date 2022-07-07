@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-exporter-deployment
+  labels:
+    app: cache-exporter
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/"
+    prometheus.io/port: "8080"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cache-exporter
+  template:
+    metadata:
+      labels:
+        app: cache-exporter
+    spec:
+      containers:
+        - name: cache-exporter
+          image: akshayaaa/cache-exporter
+          ports:
+            - containerPort: 8080
+          args: ["redis-master"]
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0%
+    type: RollingUpdate

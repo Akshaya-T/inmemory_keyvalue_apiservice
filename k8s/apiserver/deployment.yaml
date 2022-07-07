@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiserver-deployment
+  labels:
+    app: apiserver
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "8000"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apiserver
+  template:
+    metadata:
+      labels:
+        app: apiserver
+    spec:
+      containers:
+        - name: apiserver
+          image: akshayaaa/inmemory_keyval_server
+          ports:
+            - containerPort: 8000
+              name: apiserver
+          env:
+            - name: REDIS_HOST
+              value: "redis-master"
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0%
+    type: RollingUpdate

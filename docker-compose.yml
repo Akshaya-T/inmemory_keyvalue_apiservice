@@ -10,6 +10,8 @@ services:
       - redis
     links:
       - redis
+    environment:
+      REDIS_HOST: "redis"
 
   redis:
     image: redis

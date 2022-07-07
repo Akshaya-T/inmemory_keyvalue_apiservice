@@ -2,10 +2,12 @@ from fastapi import FastAPI, Request, Response
 from pydantic import BaseModel
 import redis
 import json
+import os
+import argparse
 import logging as logger
 from prometheus_fastapi_instrumentator import Instrumentator
 
-redis_client = redis.Redis(host='redis')
+redis_client = redis.Redis(host=os.getenv("REDIS_HOST"))
 
 app = FastAPI()
 Instrumentator().instrument(app).expose(app)
