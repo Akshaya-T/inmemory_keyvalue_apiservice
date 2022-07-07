@@ -1,21 +1,20 @@
 from fastapi import FastAPI, Request, Response
-from pydantic import BaseModel
 import redis
 import json
 import os
 import argparse
 import logging as logger
 from prometheus_fastapi_instrumentator import Instrumentator
+from schemas import Payload
 
-redis_client = redis.Redis(host=os.getenv("REDIS_HOST"))
 
 app = FastAPI()
 Instrumentator().instrument(app).expose(app)
 
+# Creating redis client
 
-class Payload(BaseModel):
-    key: str
-    val: str
+pool = redis.ConnectionPool(host=os.getenv("REDIS_HOST"), port=6379)
+redis_client = redis.Redis(connection_pool=pool)
 
 
 @app.get("/")
