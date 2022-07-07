@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: apiserver
-          image: akshayaaa/inmemory_keyval_server
+          image: akshayaaa/inmemory_keyval_server:main-844a8f9
           ports:
             - containerPort: 8000
               name: apiserver
