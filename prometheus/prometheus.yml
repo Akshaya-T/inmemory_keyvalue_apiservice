@@ -1,0 +1,13 @@
+scrape_configs:
+  - job_name: apiservice-metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["api:8000"]
+  - job_name: prometheus-cache-exporter
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    metrics_path: /
+    static_configs:
+      - targets: ["prometheus_exporter:8080"]

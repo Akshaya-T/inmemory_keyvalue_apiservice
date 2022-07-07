@@ -1,0 +1,6 @@
+redis
+fastapi
+uvicorn
+prometheus-client
+pytest
+prometheus-fastapi-instrumentator
