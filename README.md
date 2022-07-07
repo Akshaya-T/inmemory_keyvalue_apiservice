@@ -1,11 +1,9 @@
 # inmemory_keyvalue_apiservice
 
-
-
 # Local setup without docker
 
 ```
-cd ./apiservice
+cd ./app
 
 Install all the requirements
 
@@ -13,7 +11,7 @@ pip install -r requirement.txt
 
 Server Start command
 
-uvicorn app:app --reload 
+uvicorn app:app --reload
 ```
 
 ### Dependancies:
@@ -25,13 +23,14 @@ redis
 Run Unit tests
 
 ```
-cd ./apiservice/tests
+cd ./app/tests
 
 # Run the command
 
 pytest
 
 ```
+
 ---
 
 # with Docker
@@ -52,7 +51,7 @@ docker run -p 6379:6379 -d redis
 
 ### Run Prometheus exporter
 
-docker build -t exporter . 
+docker build -t exporter .
 
 docker run -d -p 8080:8080 exporter
 ```
@@ -70,6 +69,7 @@ docker-compose down
 ---
 
 # K8s setup
+
 ```
 ### Run Redis in Helm
 
