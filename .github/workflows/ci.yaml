@@ -26,8 +26,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./apiservice/Dockerfile
+          context: ./apiservice
+          file: Dockerfile
           tags: akshayaaa/inmemory_keyval_server:${{ steps.tag.outputs.docker_tag }}-${{ steps.vars.outputs.sha_short }}
           builder: ${{ steps.buildx.outputs.name }}
           push: true
