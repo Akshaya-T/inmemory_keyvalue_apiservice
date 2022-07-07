@@ -24,6 +24,9 @@ def ping():
 
 @app.get("/get/{key}")
 def fetch_key(key: str):
+    """
+    fetch key from the redis key value store returns the value
+    """
     try:
         if redis_client.exists(key):
             value = redis_client.get(key).decode()
@@ -37,6 +40,9 @@ def fetch_key(key: str):
 
 @app.post("/set")
 def store_key(request: Payload):
+    """
+    store key value to the redis
+    """
     try:
         req_body = request.dict()
         redis_client.set(req_body["key"], req_body["val"])
@@ -48,6 +54,9 @@ def store_key(request: Payload):
 
 @app.get("/search")
 def search(prefix: str = "", suffix: str = ""):
+    """
+    search for the given key prefix/suffix and returns the list of matching keys
+    """
     try:
         matches = redis_client.keys(prefix+"*"+suffix)
         return {"results": matches}
