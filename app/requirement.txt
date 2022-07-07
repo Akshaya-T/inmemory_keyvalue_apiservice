@@ -1,6 +1,6 @@
-redis
-fastapi
-uvicorn
-prometheus-client
-pytest
-prometheus-fastapi-instrumentator
+redis==2.10.5
+fastapi==0.78.0
+uvicorn==0.18.2
+prometheus-client==0.14.1
+pytest==7.1.2
+prometheus-fastapi-instrumentator==5.8.2
