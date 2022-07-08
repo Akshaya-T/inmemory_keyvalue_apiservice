@@ -85,3 +85,16 @@ kubectl apply -f k8s/apiserver
 
 kubectl apply -f k8s/cache_exporter/cache_exporter.yaml
 ```
+
+### Server Endpoints
+
+Once the docker is up check the following endpoints,
+
+
+Server: http://localhost:8000/docs
+
+Prometheus exporter: http://localhost:8080
+
+Prometheus: http://localhost:9090
+
+
