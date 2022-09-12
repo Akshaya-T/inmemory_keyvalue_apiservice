@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: inmemory-cache
+  description: inmemory-cache
+  tags:
+    - python
+    - server
+spec:
+  type: service
+  lifecycle: production
+  owner: platform
